@@ -3,20 +3,18 @@ function deepComp(a, b) {
 	if (typeof (a) !== typeof (b)) {
 		return false;
 	}
-	if (typeof (a) == 'number' && isNaN(a) && typeof (b) == 'number' && isNaN(b)) {
+	if (typeof (a) == 'number' && isNaN(a) && isNaN(b)) {
 		return true;
 	}
-	if ((a === null) !== (b === null)) {
-		return false;
+	if ((typeof (a) !== "object" || a === null) || (typeof (b) !== "object" || b === null)) {
+		return a === b;
 	}
-	if (typeof (a) !== "object" && typeof (b) !== "object") {
-		return (a === b) ? true : false;
-	}
-	if (typeof a === "object" && typeof b === "object") {
+
+	if (typeof a === "object") {
 		if (Array.isArray(a) !== Array.isArray(b)) {
 			return false;
 		}
-		if (Array.isArray(a) && Array.isArray(b)) {
+		if (Array.isArray(a)) {
 			if (a.length === b.length) {
 				return a.every((elem, index) => deepComp(elem, b[index]));
 			}
