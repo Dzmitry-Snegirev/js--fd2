@@ -12,10 +12,12 @@ function calc(str) {
 		var a = str.indexOf('(');
 		var b = str.indexOf(')');
 		var strbot = calc(str.slice(a + 1, b));
-		if (strbot.charAt(0) === "-") {
-			var strClear = strbot.slice(1);
-			strbot = strbot.replace(strbot, strClear);
-			znak = true;
+		for (var i = 0; i < strbot.length; i++) {
+			if (strbot[0] === "-") {
+				var strClear = strbot.slice(1);
+				strbot = strbot.replace(strbot, strClear);
+				znak = true;
+			}
 		}
 		str = str.replace(str.slice(a, b + 1), strbot);
 	}
@@ -61,11 +63,12 @@ function calc(str) {
 		}
 	}
 	else (result = parseFloat(str));
-	if (znak === true) {
+	if (znak === true && result !== 0) {
 		result = "-" + result;
+		result = parseFloat(result);
 	}
+
 	return result;
 }
 console.log(calc(strTop));
-
 
