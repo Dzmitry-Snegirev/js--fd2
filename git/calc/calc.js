@@ -3,11 +3,13 @@ var strTop = prompt("Введите строку для расчёта");
 function calc(str) {
 	var result = 0;
 	var znak = false;
+
 	if (str.charAt(0) === "-") {
 		var strClear = str.slice(1);
 		str = str.replace(str, strClear);
 		znak = true;
 	}
+
 	if (str.indexOf('(') != -1) {
 		var a = str.indexOf('(');
 		var b = str.indexOf(')');
@@ -22,53 +24,60 @@ function calc(str) {
 		str = str.replace(str.slice(a, b + 1), strbot);
 	}
 
-	if (isNaN(str)) {
-		if (str.indexOf('+') != -1) {
-			str = str.split('+');
-			result = calc(str[0]);
-			for (var i = 1; i < str.length; i++) {
-				if (znak === true) {
-					result = result - calc(str[i]);
-				}
-				else {
-					result = result + calc(str[i]);
-				}
-			}
+	if (str.indexOf('+') != -1) {
+		if (str.indexOf('-') != -1) {
+			var m = str.indexOf('-');
+			str = str.slice(0, m) + str.slice(m + 1, str.length);
+			znak = true;
 		}
-		else if (str.indexOf('-') != -1) {
-			str = str.split('-');
-			result = calc(str[0]);
-			for (var i = 1; i < str.length; i++) {
-				if (znak === true) {
-					result = result + calc(str[i]);
-				}
-				else {
-					result = result - calc(str[i]);
-				}
+		str = str.split('+');
+		result = calc(str[0]);
+		for (var i = 1; i < str.length; i++) {
+			if (znak === true) {
+				result = result - calc(str[i]);
+				znak = false;
 			}
-		}
-		else if (str.indexOf('*') != -1) {
-			str = str.split('*');
-			result = calc(str[0]);
-			for (var i = 1; i < str.length; i++) {
-				result = result * calc(str[i]);
-			}
-		}
-		else if (str.indexOf('/') != -1) {
-			str = str.split('/');
-			result = calc(str[0]);
-			for (var i = 1; i < str.length; i++) {
-				result = result / calc(str[i]);
+			else {
+				result = result + calc(str[i]);
 			}
 		}
 	}
+
+	else if (str.indexOf('*') != -1) {
+		str = str.split('*');
+		result = calc(str[0]);
+		for (var i = 1; i < str.length; i++) {
+			result = result * calc(str[i]);
+		}
+	}
+	else if (str.indexOf('/') != -1) {
+		str = str.split('/');
+		result = calc(str[0]);
+		for (var i = 1; i < str.length; i++) {
+			result = result / calc(str[i]);
+		}
+	}
+	else if (str.indexOf('-') != -1) {
+		str = str.split('-');
+		result = calc(str[0]);
+		for (var i = 1; i < str.length; i++) {
+			if (znak === true) {
+				result = result + calc(str[i]);
+				znak === false;
+			}
+			else {
+				result = result - calc(str[i]);
+			}
+		}
+	}
+
 	else (result = parseFloat(str));
 	if (znak === true && result !== 0) {
 		result = "-" + result;
-		result = parseFloat(result);
 	}
-
 	return result;
 }
 console.log(calc(strTop));
+
+
 
