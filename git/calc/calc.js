@@ -3,6 +3,7 @@ var strTop = prompt("Введите строку для расчёта");
 function calc(str) {
 	var result = 0;
 	var znak = false;
+	var turn = false;
 
 	if (str.charAt(0) === "-") {
 		var strClear = str.slice(1);
@@ -29,6 +30,7 @@ function calc(str) {
 			var m = str.indexOf('-');
 			str = str.slice(0, m) + str.slice(m + 1, str.length);
 			znak = true;
+			turn = false;
 		}
 		str = str.split('+');
 		result = calc(str[0]);
@@ -58,6 +60,14 @@ function calc(str) {
 		}
 	}
 	else if (str.indexOf('-') != -1) {
+		var f = str.indexOf('-');
+		for (var i = 0; i < str.length; i++) {
+			if (str[f + 1] === "-") {
+				str = str.slice(0, f) + str.slice(f + 1, str.length);
+				znak = true;
+				turn = true;
+			}
+		}
 		str = str.split('-');
 		result = calc(str[0]);
 		for (var i = 1; i < str.length; i++) {
@@ -72,12 +82,10 @@ function calc(str) {
 	}
 
 	else (result = parseFloat(str));
-	if (znak === true && result !== 0) {
+	if (znak === true && result !== 0 && turn === false) {
 		result = "-" + result;
 	}
 	return result;
 }
 console.log(calc(strTop));
-
-
 
