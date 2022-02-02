@@ -46,6 +46,11 @@ function calc(str) {
 	}
 
 	else if (str.indexOf('*') != -1) {
+		if (znak === true && str.indexOf('-') != -1) {
+			var p = str.indexOf('-');
+			str = str.slice(0, p) + str.slice(p + 1, str.length);
+			znak = false;
+		}
 		str = str.split('*');
 		result = calc(str[0]);
 		for (var i = 1; i < str.length; i++) {
@@ -53,6 +58,11 @@ function calc(str) {
 		}
 	}
 	else if (str.indexOf('/') != -1) {
+		if (znak === true && str.indexOf('-') != -1) {
+			var r = str.indexOf('-');
+			str = str.slice(0, r) + str.slice(r + 1, str.length);
+			znak = false;
+		}
 		str = str.split('/');
 		result = calc(str[0]);
 		for (var i = 1; i < str.length; i++) {
@@ -88,4 +98,6 @@ function calc(str) {
 	return result;
 }
 console.log(calc(strTop));
+
+
 
