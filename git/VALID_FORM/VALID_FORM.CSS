@@ -1,0 +1,36 @@
+.coment {
+	width: 12em;
+	float: left;
+}
+.top {
+	margin-bottom: 10px;
+}
+textarea {
+	width: 50%;
+	margin-bottom: 5px;
+	padding-bottom: 40px;
+}
+
+input[type="text"] {
+	width: 30%;
+	margin-bottom: 10px;
+}
+span {
+	color: red;
+	padding-left: 10px;
+	display: none;
+}
+@media only all and (max-width: 685px) {
+	.name {
+		float: none;
+		padding-bottom: 0.5em;
+		padding-top: 0.5em;
+	}
+	.area {
+		margin-left: 0;
+	}
+
+	ul li {
+		display: block;
+	}
+}

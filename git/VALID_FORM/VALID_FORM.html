@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>replit</title>
+	<link href="VALID_FORM.CSS" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<form name='INFO' method="POST" action='http://fe.it-academy.by/TestForm.php' novalidate>
+		Разработчики &colon;<input type=text name='develop'><span id="span1" class="ollspan">заполните поле (30
+			символов)</span><br />
+
+		Название сайта &colon;<input type=text name='nameSite'><span id="span2" class="ollspan">заполните поле</span><br />
+
+		URL сайта &colon;<input type=text name='url'><span id="span3">заполните поле</span><br />
+
+		Дата запуска сайта &colon;<input type="date" name='DATA'><span id="span4">установите дату</span><br /><br>
+
+		Посетителей в сутки &colon; <input type=text name='count'><span id="span5">введите число</span><br />
+
+		E-mail для связи &colon;<input type=text name='mail'><span id="span6">заполните поле</span><br />
+
+		Рубрика каталога
+		<select name='catalog'>
+			<option value=1>бытовая техника</option>
+			<option value=2>здоровье</option>
+			<option value=3>домашний уют</option>
+		</select><span id="span7">сделайте новый выбор</span><br />
+		<br />
+
+		Размещение &colon;<span id="span8">укажите новый выбор</span><br>
+		<input type='radio' name='service' id="service11" value=11>бесплатное<br>
+		<input type='radio' name='service' value=22>платное<br>
+		<input type='radio' name='service' value=33>VIP<br>
+
+		Разрешить отзывы&colon;
+		<input type="checkbox" name="AGREE">
+		<span id="span9">нажмите выбор</span>
+		<br />
+
+		Описание сайта &colon;
+		<textarea name="mytext"></textarea>
+		<span id="span10">заполните поле</span>
+		<br>
+		<br>
+		<input type='submit' value='опубликовать'>
+	</form>
+	<script src="VALID_FORM.JS"></script>
+</body>
+
+</html>
