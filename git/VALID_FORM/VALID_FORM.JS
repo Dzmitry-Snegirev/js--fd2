@@ -28,6 +28,7 @@ function devBlur(devField) {
 	if (this.value == "" || this.value.length > 30) {
 		var pars1 = document.getElementById('span1');
 		pars1.style.display = 'inline-block';
+
 	}
 	else {
 		var pars1 = document.getElementById('span1');
@@ -66,7 +67,7 @@ function dateBlur(dateField) {
 	}
 }
 function countBlur(countField) {
-	if (this.value === 0 || isNaN(this.value)) {
+	if (this.value === "" || isNaN(this.value)) {
 		var pars5 = document.getElementById('span5');
 		pars5.style.display = 'inline-block';
 	}
@@ -126,8 +127,9 @@ function mytextBlur(mytextField) {
 formTag.addEventListener('submit', validateInfoForm, false);
 function validateInfoForm(EO) {
 	EO = EO || window.event;
+	var focusInput;
+
 	try {
-		var result = true;
 		var formTag = document.forms.INFO;
 
 		var devField = formTag.elements.develop;
@@ -162,85 +164,127 @@ function validateInfoForm(EO) {
 
 
 		if (devValue === "" || devValue.length > 30) {
+			devField.focus();
 			var pars1 = document.getElementById('span1');
 			pars1.style.display = 'inline-block';
-			devField.focus();
+			focusInput = true;
 			EO.preventDefault();
-			result = false;
+		}
+		else {
+			var pars1 = document.getElementById('span1');
+			pars1.style.display = 'none';
 		}
 
 		if (nameValue === "" || nameValue.length > 15) {
 			var pars2 = document.getElementById('span2');
 			pars2.style.display = 'inline-block';
-			nameField.focus();
 			EO.preventDefault();
-			result = false;
+			if (focusInput !== true) {
+				nameField.focus();
+				focusInput = true;
+			}
 		}
-
+		else {
+			var pars2 = document.getElementById('span2');
+			pars2.style.display = 'none';
+		}
 		if (urlValue === "" || urlValue.length > 15) {
 			var pars3 = document.getElementById('span3');
 			pars3.style.display = 'inline-block';
-			siteField.focus();
 			EO.preventDefault();
-			result = false;
+			if (focusInput !== true) {
+				siteField.focus();
+				focusInput = true;
+			}
+		}
+		else {
+			var pars3 = document.getElementById('span3');
+			pars3.style.display = 'none';
 		}
 
 		if (dateValue === "") {
 			var pars4 = document.getElementById('span4');
 			pars4.style.display = 'inline-block';
-			dateField.focus();
 			EO.preventDefault();
-			result = false;
-
+			if (focusInput !== true) {
+				dateField.focus();
+				focusInput = true;
+			}
 		}
-		if (countValue === 0 || isNaN(countValue)) {
+		else {
+			var pars4 = document.getElementById('span4');
+			pars4.style.display = 'none';
+		}
+		if (countValue === "" || isNaN(countValue)) {
 			var pars5 = document.getElementById('span5');
 			pars5.style.display = 'inline-block';
-			countField.focus();
 			EO.preventDefault();
-			result = false;
+			if (focusInput !== true) {
+				countField.focus();
+				focusInput = true;
+			}
+		}
+		else {
+			var pars5 = document.getElementById('span5');
+			pars5.style.display = 'none';
 		}
 		if (mailValue === "" || mailValue.indexOf('@') == -1) {
 			var pars6 = document.getElementById('span6');
 			pars6.style.display = 'inline-block';
-			mailField.focus();
 			EO.preventDefault();
-			result = false;
+			if (focusInput !== true) {
+				mailField.focus();
+				focusInput = true;
+			}
+		}
+		else {
+			var pars6 = document.getElementById('span6');
+			pars6.style.display = 'none';
 		}
 		if (catalogValue == 1) {
 			var pars7 = document.getElementById('span7');
 			pars7.style.display = 'inline-block';
-			catalogField.focus();
 			EO.preventDefault();
-			result = false;
+			if (focusInput !== true) {
+				catalogField.focus();
+				focusInput = true;
+			}
+		}
+		else {
+			var pars7 = document.getElementById('span7');
+			pars7.style.display = 'none';
+			focusInput = false;
 		}
 		if (serviceValue == "") {
 			var pars8 = document.getElementById('span8');
 			pars8.style.display = 'inline-block';
-			document.getElementById('service11').scrollIntoView();
 			EO.preventDefault();
-			result = false;
+		}
+		else {
+			var pars8 = document.getElementById('span8');
+			pars1.style.display = 'none';
 		}
 		if (!agreeValue) {
 			var pars9 = document.getElementById('span9');
 			pars9.style.display = 'inline-block';
-			agreeField.focus();
 			EO.preventDefault();
-			result = false;
+		}
+		else {
+			var pars9 = document.getElementById('span9');
+			pars9.style.display = 'none';
 		}
 		if (mytextValue == "") {
 			var pars10 = document.getElementById('span10');
 			pars10.style.display = 'inline-block';
-			mytextField.focus();
 			EO.preventDefault();
-			result = false;
-		}
-
-		if (result === false) {
-			var pars = document.getElementsByTagName('span');
-			for (var i = 0; i < pars.length; i++) {
-				pars[i].style.display = 'inline-block';
+			if (focusInput !== true) {
+				mytextField.focus();
+				focusInput = true;
 			}
+		}
+		else {
+			var pars10 = document.getElementById('span10');
+			pars10.style.display = 'none';
 		}
 	}
 	catch (ex) {
