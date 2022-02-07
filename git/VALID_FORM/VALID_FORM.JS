@@ -98,7 +98,7 @@ function catalogBlur(catalogField) {
 }
 
 for (var i = 0; i < serviceField.length; i++) {
-	serviceField[i].onclick = function () {
+	serviceField[i].onchange = function () {
 		var pars8 = document.getElementById('span8');
 		pars8.style.display = 'none';
 	}
