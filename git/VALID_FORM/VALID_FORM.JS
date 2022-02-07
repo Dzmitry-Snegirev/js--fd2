@@ -20,8 +20,8 @@ siteField.addEventListener('blur', siteBlur, false);
 dateField.addEventListener('blur', dateBlur, false);
 countField.addEventListener('blur', countBlur, false);
 mailField.addEventListener('blur', mailBlur, false);
-catalogField.addEventListener('blur', catalogBlur, false);
-agreeField.addEventListener('click', agreeClick, false);
+catalogField.addEventListener('change', catalogBlur, false);
+agreeField.addEventListener('change', agreeClick, false);
 mytextField.addEventListener('blur', mytextBlur, false);
 
 function devBlur(devField) {
