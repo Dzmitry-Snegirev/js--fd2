@@ -7,20 +7,15 @@
 </head>
 
 <body style='min-height: 100vh'>
-	<img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
-	<img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
-	<img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
-	<img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>
 
 	<script>
 		var elems = document.getElementsByTagName('img');
 		for (var i = 0; i < elems.length; i++) {
-			var elem = elems[i];
-			var leftStart = elem.offsetLeft;
-			var topStart = elem.offsetTop;
-			elem.style.left = leftStart + 'px';
-			elem.style.top = topStart + 'px';
-			elem.addEventListener('mousedown', mouseD, false);
+			var leftStart = elems[i].offsetLeft;
+			var topStart = elems[i].offsetTop;
+			elems[i].style.left = leftStart + 'px';
+			elems[i].style.top = topStart + 'px';
+			elems[i].addEventListener('mousedown', mouseD, false);
 		}
 
 		for (var i = 0; i < elems.length; i++) {
@@ -62,6 +57,12 @@
 			}
 		}
 	</script>
+	<img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
+	<img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
+	<img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
+	<img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>
+
+
 
 </body>
 
