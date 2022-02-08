@@ -8,60 +8,62 @@
 
 <body style='min-height: 100vh'>
 
-	<script>
-		var elems = document.getElementsByTagName('img');
-		for (var i = 0; i < elems.length; i++) {
-			var leftStart = elems[i].offsetLeft;
-			var topStart = elems[i].offsetTop;
-			elems[i].style.left = leftStart + 'px';
-			elems[i].style.top = topStart + 'px';
-			elems[i].addEventListener('mousedown', mouseD, false);
-		}
 
-		for (var i = 0; i < elems.length; i++) {
-			elems[i].style.position = 'absolute';
-		}
-		function getElementPos(elem) {
-			var bbox = elem.getBoundingClientRect();
-			return {
-				left: bbox.left + pageXOffset,
-				top: bbox.top + pageYOffset
-			}
-		}
-		function mouseD(EO) {
-			EO = EO || window.event;
-			document.body.append(this);
-			this.style.cursor = "move";
-			this.style.zIndex = 10;
-			var boxPos = getElementPos(this);
-			var X = EO.pageX - boxPos.left;
-			var Y = EO.pageY - boxPos.top;
-			this.addEventListener('mousemove', mouseM, false);
-			this.addEventListener('mouseup', mouseU, false);
-			this.addEventListener('dragstart', drag, false);
-
-			function mouseM(EO) {
-				EO = EO || window.event;
-				EO.target.style.left = EO.pageX - X + 'px';
-				EO.target.style.top = EO.pageY - Y + 'px';
-			}
-			function mouseU() {
-				EO = EO || window.event;
-				this.removeEventListener("mousemove", mouseM);
-				this.removeEventListener("mouseup", mouseU);
-				this.style.cursor = "";
-			}
-			function drag() {
-				EO = EO || window.event;
-				this.removeEventListener("dragstart", drag);
-			}
-		}
-	</script>
 	<img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
 	<img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
 	<img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
 	<img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>
+	<script>
+		window.addEventListener("load", function (event) {
+			var elems = document.getElementsByTagName('img');
+			for (var i = 0; i < elems.length; i++) {
+				var leftStart = elems[i].offsetLeft;
+				var topStart = elems[i].offsetTop;
+				elems[i].style.left = leftStart + 'px';
+				elems[i].style.top = topStart + 'px';
+				elems[i].addEventListener('mousedown', mouseD, false);
+			}
 
+			for (var i = 0; i < elems.length; i++) {
+				elems[i].style.position = 'absolute';
+			}
+			function getElementPos(elem) {
+				var bbox = elem.getBoundingClientRect();
+				return {
+					left: bbox.left + pageXOffset,
+					top: bbox.top + pageYOffset
+				}
+			}
+			function mouseD(EO) {
+				EO = EO || window.event;
+				document.body.append(this);
+				this.style.cursor = "move";
+				this.style.zIndex = 10;
+				var boxPos = getElementPos(this);
+				var X = EO.pageX - boxPos.left;
+				var Y = EO.pageY - boxPos.top;
+				this.addEventListener('mousemove', mouseM, false);
+				this.addEventListener('mouseup', mouseU, false);
+				this.addEventListener('dragstart', drag, false);
+
+				function mouseM(EO) {
+					EO = EO || window.event;
+					EO.target.style.left = EO.pageX - X + 'px';
+					EO.target.style.top = EO.pageY - Y + 'px';
+				}
+				function mouseU() {
+					EO = EO || window.event;
+					this.removeEventListener("mousemove", mouseM);
+					this.removeEventListener("mouseup", mouseU);
+					this.style.cursor = "";
+				}
+				function drag() {
+					EO = EO || window.event;
+					this.removeEventListener("dragstart", drag);
+				}
+			}
+		});
+	</script>
 
 
 </body>
