@@ -44,7 +44,6 @@
 				var Y = EO.pageY - boxPos.top;
 				this.addEventListener('mousemove', mouseM, false);
 				this.addEventListener('mouseup', mouseU, false);
-				this.addEventListener('dragstart', drag, false);
 
 				function mouseM(EO) {
 					EO = EO || window.event;
@@ -57,10 +56,7 @@
 					this.removeEventListener("mouseup", mouseU);
 					this.style.cursor = "";
 				}
-				function drag() {
-					EO = EO || window.event;
-					this.removeEventListener("dragstart", drag);
-				}
+				EO.preventDefault();
 			}
 		});
 	</script>
