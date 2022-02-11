@@ -34,6 +34,7 @@
 					top: bbox.top + pageYOffset
 				}
 			}
+			window.addEventListener('mouseover', mouseM, false);
 			function mouseD(EO) {
 				EO = EO || window.event;
 				document.body.append(this);
@@ -58,6 +59,7 @@
 				}
 				EO.preventDefault();
 			}
+
 		});
 	</script>
 
