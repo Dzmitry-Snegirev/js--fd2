@@ -34,18 +34,19 @@
 					top: bbox.top + pageYOffset
 				}
 			}
-			window.addEventListener('mouseover', mouseM, false);
+
 			function mouseD(EO) {
 				EO = EO || window.event;
+				EO.preventDefault();
 				document.body.append(this);
-				this.style.cursor = "move";
 				this.style.zIndex = 10;
+				this.style.cursor = "move";
 				var boxPos = getElementPos(this);
 				var X = EO.pageX - boxPos.left;
 				var Y = EO.pageY - boxPos.top;
-				this.addEventListener('mousemove', mouseM, false);
 				this.addEventListener('mouseup', mouseU, false);
-
+				window.addEventListener('mouseover', mouseM, false);
+				window.addEventListener('mousemove', mouseM, false);
 				function mouseM(EO) {
 					EO = EO || window.event;
 					EO.target.style.left = EO.pageX - X + 'px';
@@ -53,11 +54,11 @@
 				}
 				function mouseU() {
 					EO = EO || window.event;
-					this.removeEventListener("mousemove", mouseM);
-					this.removeEventListener("mouseup", mouseU);
-					this.style.cursor = "";
+					window.removeEventListener("mouseover", mouseM);
+					window.removeEventListener("mousemove", mouseM);
+
 				}
-				EO.preventDefault();
+
 			}
 
 		});
