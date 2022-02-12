@@ -45,8 +45,8 @@
 				var X = EO.pageX - boxPos.left;
 				var Y = EO.pageY - boxPos.top;
 				this.addEventListener('mouseup', mouseU, false);
-				window.addEventListener('mouseover', mouseM, false);
-				window.addEventListener('mousemove', mouseM, false);
+				document.body.addEventListener('mouseover', mouseM, false);
+				document.body.addEventListener('mousemove', mouseM, false);
 				function mouseM(EO) {
 					EO = EO || window.event;
 					EO.target.style.left = EO.pageX - X + 'px';
@@ -54,8 +54,8 @@
 				}
 				function mouseU() {
 					EO = EO || window.event;
-					window.removeEventListener("mouseover", mouseM);
-					window.removeEventListener("mousemove", mouseM);
+					document.body.removeEventListener("mouseover", mouseM);
+					document.body.removeEventListener("mousemove", mouseM);
 
 				}
 
