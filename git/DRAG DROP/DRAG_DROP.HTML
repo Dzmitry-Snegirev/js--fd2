@@ -57,8 +57,8 @@
 					EO = EO || window.event;
 					document.body.removeEventListener("mouseover", mouseM);
 					document.body.removeEventListener("mousemove", mouseM);
+					this.removeEventListener("mouseup", mouseU);
 				}
-
 			}
 
 		});
