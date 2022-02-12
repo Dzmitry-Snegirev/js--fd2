@@ -44,19 +44,19 @@
 				var boxPos = getElementPos(this);
 				var X = EO.pageX - boxPos.left;
 				var Y = EO.pageY - boxPos.top;
+				var c = EO.target;
 				this.addEventListener('mouseup', mouseU, false);
 				document.body.addEventListener('mouseover', mouseM, false);
 				document.body.addEventListener('mousemove', mouseM, false);
 				function mouseM(EO) {
 					EO = EO || window.event;
-					EO.target.style.left = EO.pageX - X + 'px';
-					EO.target.style.top = EO.pageY - Y + 'px';
+					c.style.left = EO.pageX - X + 'px';
+					c.style.top = EO.pageY - Y + 'px';
 				}
 				function mouseU() {
 					EO = EO || window.event;
 					document.body.removeEventListener("mouseover", mouseM);
 					document.body.removeEventListener("mousemove", mouseM);
-
 				}
 
 			}
