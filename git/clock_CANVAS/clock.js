@@ -75,10 +75,11 @@ function addClock() {
 	contexHour.lineTo((clockRadius + clockRadius * 0.4 * Math.sin(hour / 12 * 2 * Math.PI + minute / 60 / 12)), (clockRadius - clockRadius * 0.4 * Math.cos(hour / 12 * 2 * Math.PI + minute / 60 / 12)));
 	contexHour.stroke();
 	console.log('Текущее время - ' + currTimeStr);
+	setInterval(addClock, 1000);
 }
 
-setInterval(addClock, 1000);
-addClock();
+
+
 function formatDateTime(dt) {
 	var year = dt.getFullYear();
 	var month = dt.getMonth() + 1;
