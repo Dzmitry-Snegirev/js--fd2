@@ -1,4 +1,7 @@
 "use strict"
+function start() {
+	setInterval(addClock, 1000);
+}
 function addClock() {
 	var currTime = new Date();
 	var second = currTime.getSeconds();
@@ -75,7 +78,6 @@ function addClock() {
 	contexHour.lineTo((clockRadius + clockRadius * 0.4 * Math.sin(hour / 12 * 2 * Math.PI + minute / 60 / 12)), (clockRadius - clockRadius * 0.4 * Math.cos(hour / 12 * 2 * Math.PI + minute / 60 / 12)));
 	contexHour.stroke();
 	console.log('Текущее время - ' + currTimeStr);
-	setInterval(addClock, 1000);
 }
 
 
