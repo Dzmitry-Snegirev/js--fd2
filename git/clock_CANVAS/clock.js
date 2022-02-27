@@ -1,4 +1,4 @@
-"use strict"
+
 "use strict"
 function addClock() {
 	var currTime = new Date();
