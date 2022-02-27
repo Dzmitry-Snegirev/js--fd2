@@ -1,21 +1,18 @@
 "use strict"
-function start() {
-	setInterval(addClock, 1000);
-}
+"use strict"
 function addClock() {
 	var currTime = new Date();
 	var second = currTime.getSeconds();
 	var minute = currTime.getMinutes();
 	var hour = currTime.getHours();
 	hour = hour < 12 ? hour : hour - 12;
-
 	var form = document.forms.FPos;
 	var clockRadius = parseFloat(form.elements.Radius.value) / 2;
 	var cvs = document.getElementById('CVE');
 	cvs.setAttribute("width", clockRadius * 2);
 	cvs.setAttribute("height", clockRadius * 2);
 	var context = cvs.getContext('2d');
-
+	var flag = false;
 	context.fillStyle = 'yellow';
 	context.beginPath();
 	context.arc(clockRadius, clockRadius, clockRadius, 0, Math.PI * 2, false);
@@ -45,6 +42,7 @@ function addClock() {
 	}
 
 	currTimeStr = formatDateTime(currTime);
+	console.log('Текущее время - ' + currTimeStr);
 
 	var contexTime = cvs.getContext('2d');
 	contexTime.fillStyle = 'black';
@@ -75,11 +73,23 @@ function addClock() {
 	contexHour.lineWidth = 10;
 	contexHour.beginPath();
 	contexHour.moveTo(clockRadius, clockRadius);
-	contexHour.lineTo((clockRadius + clockRadius * 0.4 * Math.sin(hour / 12 * 2 * Math.PI + minute / 60 / 12)), (clockRadius - clockRadius * 0.4 * Math.cos(hour / 12 * 2 * Math.PI + minute / 60 / 12)));
+	contexHour.lineTo((clockRadius + clockRadius * 0.4 * Math.sin(hour / 12 * 2 * Math.PI + minute / 60 / 2)), (clockRadius - clockRadius * 0.4 * Math.cos(hour / 12 * 2 * Math.PI + minute / 60 / 2)));
 	contexHour.stroke();
-	console.log('Текущее время - ' + currTimeStr);
+	var onetime = setTimeout(addClock, 1000);
+	if (flag === false) {
+		var onetime = setInterval(addClock, 1000);
+		flag = true;
+	}
+	if (flag === true) {
+		clearTimeout(onetime);
+	}
 }
-
+function updateTime() {
+	var currTime = new Date();
+	var second = currTime.getSeconds();
+	var minute = currTime.getMinutes();
+	var hour = currTime.getHours();
+}
 
 
 function formatDateTime(dt) {
@@ -91,6 +101,7 @@ function formatDateTime(dt) {
 	var seconds = dt.getSeconds();
 	return str0l(hours, 2) + ':' + str0l(minutes, 2) + ':' + str0l(seconds, 2);
 }
+
 
 // дополняет строку val слева нулями до длины Len
 function str0l(val, len) {
