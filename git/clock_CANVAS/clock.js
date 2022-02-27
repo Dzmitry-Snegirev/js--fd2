@@ -1,4 +1,3 @@
-
 "use strict"
 function addClock() {
 	var currTime = new Date();
@@ -75,14 +74,7 @@ function addClock() {
 	contexHour.moveTo(clockRadius, clockRadius);
 	contexHour.lineTo((clockRadius + clockRadius * 0.4 * Math.sin(hour / 12 * 2 * Math.PI + minute / 60 / 2)), (clockRadius - clockRadius * 0.4 * Math.cos(hour / 12 * 2 * Math.PI + minute / 60 / 2)));
 	contexHour.stroke();
-	var onetime = setTimeout(addClock, 1000);
-	if (flag === false) {
-		var onetime = setInterval(addClock, 1000);
-		flag = true;
-	}
-	if (flag === true) {
-		clearTimeout(onetime);
-	}
+	setTimeout(addClock, 1000);
 }
 function updateTime() {
 	var currTime = new Date();
