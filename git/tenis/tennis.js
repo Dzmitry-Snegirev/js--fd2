@@ -15,48 +15,57 @@ var ball = document.createElement('div');
 ball.className = "ball_style";
 field.appendChild(ball);
 
-var speed = 8;//скорость ракеток
+
 var speedBallX = 2.2;//скорость мяча по X
 var speedBallY = 2.2;//скорость мяча по Y
 var random;// вариант направления мяча
-var m = 4;//max количество направлений
-var n = 1;//min количество направления
+var m = 4;//max количество направлений мяча
+var n = 1;//min количество направления мяча
 var scoreLeft = 0;// очки левого игрока
 var scoreRight = 0;// очки правого игрока
+var leftY;// для направление движения ракеток
+var rightY;//  для направление движения ракеток
+var speedY = 3;//скорость ракеток
+
+
+var ballTop = ball.offsetTop;
+var ballLeft = ball.offsetLeft;
+
+//направление ракеток
+window.addEventListener('keydown', moveBoards, false);
+window.addEventListener('keyup', stopBoards, false);
 
 function moveBoards(EO) {
 	EO = EO || window.event;
+
 	if (EO.keyCode == '16') {
-		leftBoard.style.top = leftBoard.offsetTop - speed + 'px';
+		leftY = -speedY;
 	}
 	if (EO.keyCode == '17') {
-		leftBoard.style.top = leftBoard.offsetTop + speed + 'px';
+		leftY = speedY;
 	}
 	if (EO.keyCode == '38') {
-		rightBoard.style.top = rightBoard.offsetTop - speed + 'px';
+		rightY = -speedY;
 	}
 	if (EO.keyCode == '40') {
-		rightBoard.style.top = rightBoard.offsetTop + speed + 'px';
+		rightY = speedY;
 	}
 }
-
 function stopBoards(EO) {
 	EO = EO || window.event;
 	if (EO.keyCode == '16') {
-		leftBoard.style.top = leftBoard.offsetTop + 'px';
+		leftY = 0;
 	}
 	if (EO.keyCode == '17') {
-		leftBoard.style.top = leftBoard.offsetTop + 'px';
+		leftY = 0;
 	}
 	if (EO.keyCode == '38') {
-		rightBoard.style.top = rightBoard.offsetTop + 'px';
+		rightY = 0;
 	}
 	if (EO.keyCode == '40') {
-		rightBoard.style.top = rightBoard.offsetTop + 'px';
+		rightY = 0;
 	}
 }
-var ballTop = ball.offsetTop;
-var ballLeft = ball.offsetLeft;
 
 function start() {
 	//мяч в центре, старт игры
@@ -66,28 +75,23 @@ function start() {
 	requestAnimationFrame(tick);
 }
 function tick() {
-
-	//движение ракеток
-	window.addEventListener('keydown', moveBoards, false);
-	window.addEventListener('keyup', stopBoards, false);
-	leftBoard.style.top = leftBoard.offsetTop + 'px';
+	//движение ракеток, проверка входа за поле
+	leftBoard.style.top = leftBoard.offsetTop + leftY + 'px';
 	if (leftBoard.offsetTop < 0) {
 		leftBoard.style.top = 0;
-	}
-	else if (leftBoard.offsetTop + leftBoard.offsetHeight > field.offsetHeight) {
+	} else if (leftBoard.offsetTop + leftBoard.offsetHeight > field.offsetHeight) {
 		leftBoard.style.top = field.offsetHeight - leftBoard.offsetHeight + 'px';
 	}
 
-	rightBoard.style.top = rightBoard.offsetTop + 'px';
+	rightBoard.style.top = rightBoard.offsetTop + rightY + 'px';
 	if (rightBoard.offsetTop < 0) {
 		rightBoard.style.top = 0;
 	} else if (rightBoard.offsetTop + rightBoard.offsetHeight > field.offsetHeight) {
 		rightBoard.style.top = field.offsetHeight - rightBoard.offsetHeight + 'px';
 	}
-
+	//случайный выбор движения мяча
 	var ballPosX = ball.offsetLeft;
 	var ballPosY = ball.offsetTop;
-	//случайный выбор движения мяча
 	if (random == 1) {
 		ballPosX -= speedBallX;
 		ballPosY += speedBallY;
@@ -101,7 +105,6 @@ function tick() {
 		ballPosX += speedBallX;
 		ballPosY += speedBallY;
 	}
-
 
 	ball.style.top = ballPosY + 'px';
 	//проверка выхода мяча по вертикали
@@ -117,7 +120,7 @@ function tick() {
 	//проверка выхода мяча по горизонтали , счет игры
 	ball.style.left = ballPosX + 'px';
 
-	if ((ballPosX + ball.offsetWidth > field.offsetWidth - rightBoard.offsetWidth) && ballPosY + ball.offsetHeight > rightBoard.offsetTop && ballPosY + ball.offsetHeight < rightBoard.offsetTop + rightBoard.offsetHeight) {
+	if (ballPosX + ball.offsetWidth > field.offsetWidth - rightBoard.offsetWidth && ballPosY + ball.offsetHeight > rightBoard.offsetTop && ballPosY + ball.offsetHeight < rightBoard.offsetTop + rightBoard.offsetHeight) {
 		speedBallX = -speedBallX;
 	} else if (ballPosX + ball.offsetWidth > field.offsetWidth) {
 		ball.style.left = field.offsetWidth - ball.offsetWidth + 'px';
@@ -127,7 +130,7 @@ function tick() {
 		return;
 	}
 
-	if ((ballPosX < leftBoard.offsetWidth) && ballPosY + ball.offsetHeight > leftBoard.offsetTop && ballPosY + ball.offsetHeight < leftBoard.offsetTop + leftBoard.offsetHeight) {
+	if (ballPosX < leftBoard.offsetWidth && ballPosY + ball.offsetHeight > leftBoard.offsetTop && ballPosY + ball.offsetHeight < leftBoard.offsetTop + leftBoard.offsetHeight) {
 		speedBallX = -speedBallX;
 	} else if (ballPosX < 0) {
 		ball.style.left = 0 + 'px';
@@ -136,8 +139,10 @@ function tick() {
 		score.innerHTML = scoreLeft + ':' + scoreRight;
 		return;
 	}
-
 	requestAnimationFrame(tick);
 }
+
+
+
 
 
