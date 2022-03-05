@@ -29,7 +29,7 @@ let keys = [];
 let score = 0;// счет игры
 let callCount = 0;
 let frame = 0;
-let gamespeed = 1;
+let gameSpeed = 1;
 
 const particlesArray = [];
 const maxParticles = 300;

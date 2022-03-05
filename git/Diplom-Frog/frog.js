@@ -11,7 +11,6 @@ class Frogger {
 		this.frameY = 0;
 	}
 	update() {
-		//console.log("update");
 		if (keys[38]) {// прыжок вверх
 			if (this.moving === false) {
 				this.y -= grid;
@@ -36,13 +35,14 @@ class Frogger {
 				this.moving = true;
 			}
 		}
+		if (this.y < 0) scored();//установка вначальное положение
 	}
 	draw() {
 		ctx3.fillStyle = "green";
 		ctx3.fillRect(this.x, this.y, this.width, this.height);
 	}
 	jump() {
-		//console.log("jump");
+
 	}
 }
 const frogger = new Frogger();
