@@ -35,7 +35,7 @@ class Frogger {
 				this.moving = true;
 			}
 		}
-		if (this.y < 0) scored();//установка вначальное положение
+		if (this.y < 0) scored();//установка в начальное положение
 	}
 	draw() {
 		ctx3.fillStyle = "green";
