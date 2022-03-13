@@ -1,0 +1,40 @@
+body>div {
+    width: 300px;
+    float: left;
+    margin: 10px;
+}
+
+.clock_style {
+    background-color: yellow;
+    border-radius: 70%;
+    position: relative;
+}
+
+.clockNum_style {
+    background-color: green;
+    border-radius: 50%;
+    color: black;
+    position: absolute;
+    font-family: bolt;
+    text-align: center;
+}
+
+.hourArrow_style,
+.minuteArrow_style,
+.secondArrow_style {
+    background-color: black;
+    position: absolute;
+    border-radius: 20%;
+    border: solid 0.5px;
+    transform: rotate(90deg);
+}
+
+.secondArrow_style {
+    border-radius: 9%;
+}
+
+.timeNum_style {
+    position: absolute;
+    z-index: 10;
+    color: black;
+}
