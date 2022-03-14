@@ -64,7 +64,7 @@ controller5.start(model5, container5);
 model5.rotation();
 model5.onClock();
 
-//Владивоток
+//Владивоcток
 var model6 = new Clock('Владивосток', +10);
 var view6 = new ClockViewCanvas();
 var controller6 = new ClockControllerButtons();

@@ -78,7 +78,7 @@ function allDrink() {
 	return console.log(result);
 }
 
-var foodStorage = new LockStorageClass("food");
+var foodStorage = new LockStorageClass('food');
 function giveinfoMenu_item() {
 	document.getElementById("putfood");
 	let nameFood = prompt("Введите название блюда").toLowerCase();
