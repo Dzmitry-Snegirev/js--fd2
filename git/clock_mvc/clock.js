@@ -30,6 +30,7 @@ function Clock(place, offset) {
 		if (myView) {
 			myView.update();
 		}
+
 	}
 	//индификатор таймера
 	var timer = null;
