@@ -1,12 +1,13 @@
-"use strict"
-
-function creatForm(a) {
+"use strict";
+function creatForm(data) {
+	console.log('загруженные через AJAX данные:');
+	console.log(data);
 	var elem = document.getElementById('top');
 	var formNew = document.createElement('form');
 	formNew.setAttribute('action', 'http://fe.it-academy.by/TestForm.php');
 	elem.appendChild(formNew);
 
-	a.forEach(function (element) {
+	data.forEach(function (element) {
 		for (let key in element) {
 
 			if (key === "label" || key === "caption") {
@@ -105,34 +106,42 @@ function creatForm(a) {
 
 	return formNew;
 }
+function getIP() {
+	var IP1 = undefined;
+	var IP2 = undefined;
+
+	function getNextIP() {
+
+		if (IP1 === undefined) {
+			$.ajax("https://fe.it-academy.by/Examples/dyn_form_ajax/formDef1.json",
+				{ type: 'GET', dataType: 'json', success: function (data) { IP1 = data; creatForm(data); getNextIP(); }, error: errorHandler }
+			);
+			return;
+		}
+
+		if (IP2 === undefined) {
+			$.ajax("https://fe.it-academy.by/Examples/dyn_form_ajax/formDef2.json",
+				{ type: 'GET', dataType: 'json', success: function (data) { IP2 = data; creatForm(data); getNextIP(); }, error: errorHandler }
+			);
+			return;
+		}
+
+	}
+
+	getNextIP();
+}
+
+function errorHandler(jqXHR, statusStr, errorStr) {
+	alert(statusStr + ' ' + errorStr);
+}
+getIP();
 
 
-var formDef1 =
-	[
-		{ label: 'Название сайта:', kind: 'longtext', name: 'sitename' },
-		{ label: 'URL сайта:', kind: 'longtext', name: 'siteurl' },
-		{ label: 'Посетителей в сутки:', kind: 'number', name: 'visitors' },
-		{ label: 'E-mail для связи:', kind: 'shorttext', name: 'email' },
-		{
-			label: 'Рубрика каталога:', kind: 'combo', name: 'division',
-			variants: [{ text: 'здоровье', value: 1 }, { text: 'домашний уют', value: 2 }, { text: 'бытовая техника', value: 3 }]
-		},
-		{
-			label: 'Размещение:', kind: 'radio', name: 'payment',
-			variants: [{ text: 'бесплатное', value: 1 }, { text: 'платное', value: 2 }, { text: 'VIP', value: 3 }]
-		},
-		{ label: 'Разрешить отзывы:', kind: 'check', name: 'votes' },
-		{ label: 'Описание сайта:', kind: 'memo', name: 'description' },
-		{ caption: 'Опубликовать', kind: 'submit' },
-	];
 
-var formDef2 =
-	[
-		{ label: 'Фамилия:', kind: 'longtext', name: 'lastname' },
-		{ label: 'Имя:', kind: 'longtext', name: 'firstname' },
-		{ label: 'Отчество:', kind: 'longtext', name: 'secondname' },
-		{ label: 'Возраст:', kind: 'number', name: 'age' },
-		{ caption: 'Зарегистрироваться', kind: 'submit' },
-	];
-creatForm(formDef1);
-creatForm(formDef2);
+
+
+
+
+
+
+
