@@ -34,7 +34,7 @@ class Particle { //класс для описания частиц пыли и �
 	}
 	ripple() {//водные круги
 		if (this.radius < 50) {
-			this.radius += 0.5;
+			this.radius += 0.7;
 			this.x -= 0.03;
 			this.y -= 0.03;
 		}
