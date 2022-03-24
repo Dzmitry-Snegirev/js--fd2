@@ -33,6 +33,7 @@ window.addEventListener("keyup", function (EO) {
 	EO = EO || window.event;
 	delete keys[EO.keyCode];
 	frogger.moving = false;
+	frogger.frameX = 0;
 });
 //увеличение скорости игры,счет
 function scored() {

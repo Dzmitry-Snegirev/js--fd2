@@ -14,8 +14,8 @@ class Obstacle {
 	}
 	//рисуем препятсвия
 	draw() {
-		if (this.type === "turtle") {
-			if (frame % this.randomise === 0) {
+		if (this.type === "turtle") {//анимация черепахи , переключение кадров
+			if (frame % 10 === 0) {
 				if (this.frameX >= 1) this.frameX = 0;
 				else this.frameX++;
 			}
@@ -25,19 +25,19 @@ class Obstacle {
 			ctx1.drawImage(log, this.x, this.y, this.width, this.height)
 		}
 		else {
-			ctx2.fillRect(this.x, this.y, this.width, this.height)
+			//	ctx2.fillRect(this.x, this.y, this.width, this.height)
 			ctx2.drawImage(cars, this.frameX * this.width, this.carType * this.height, grid * 2, grid, this.x, this.y, this.width, this.height);
 		}
 	}
-	update() { //
+	update() {
 		this.x += this.speed * gameSpeed;
 		if (this.speed > 0) {
 			if (this.x > canvas.width + this.width) {
 				this.x = 0 - this.width;
-				this.carType = Math.floor(Math.random() * numberOfCars);
+				this.carType = Math.floor(Math.random() * numberOfCars);//случайный выбор авто
 			}
 		}
-		else {
+		else {//движение в обратную сторону
 			this.frameX = 1;
 			if (this.x < 0 - this.width) {
 				this.x = canvas.width + this.width;
@@ -66,17 +66,17 @@ function initObstacles() { //создание элементов препятс�
 	//линия 4 с препятсвиями (река)
 	for (let i = 0; i < 2; i++) {
 		let x = i * 400;//ширина элемента преграды(бревна)   
-		logsArray.push(new Obstacle(x, canvas.height - grid * 6.7 - 20, grid * 2, grid, -2, "log"))
+		logsArray.push(new Obstacle(x, canvas.height - grid * 6.9 - 20, grid * 2, grid, -2, "log"))
 	}
 	//линия 5 с препятсвиями (река)
 	for (let i = 0; i < 3; i++) {
-		let x = i * 170;//ширина элемента преграды(черепахи)   
+		let x = i * 180;//ширина элемента преграды(черепахи)   
 		logsArray.push(new Obstacle(x, canvas.height - grid * 7.9 - 20, grid, grid, 1, "turtle"))
 	}
 }
 initObstacles();
 
-function handleObstacles() {
+function handleObstacles() {//отображение препятсвий
 	for (let i = 0; i < carsArray.length; i++) {
 		carsArray[i].update();
 		carsArray[i].draw();
@@ -86,9 +86,28 @@ function handleObstacles() {
 		logsArray[i].draw();
 	}
 	//столкновение с машиной
+
 	for (let i = 0; i < carsArray.length; i++) {
 		if (collision(frogger, carsArray[i])) {
 			ctx4.drawImage(collisions, 0, 100, 100, 100, frogger.x, frogger.y, 50, 50);
+			resetGame();
+		}
+	}
+
+	//столкновение с бревнами/черепахами 
+	if (frogger.y < 250 && frogger.y > 100) {
+		safe = false;
+
+		for (let i = 0; i < logsArray.length; i++) {
+			if (collision(frogger, logsArray[i])) {
+				frogger.x += logsArray[i].speed;
+				safe = true;
+			}
+		}
+		if (!safe) {
+			for (let i = 0; i < 30; i++) {
+				ripleArray.unshift(new Particle(frogger.x, frogger.y));
+			}
 			resetGame();
 		}
 	}

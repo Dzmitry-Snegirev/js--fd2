@@ -30,6 +30,7 @@ let score = 0;// счет игры
 let attempts = 0;
 let frame = 0;
 let gameSpeed = 1;
+let safe = false;
 
 const particlesArray = [];
 const maxParticles = 300;
@@ -58,3 +59,7 @@ log.src = "image/log.png";
 const cars = new Image();
 cars.src = "image/cars.png";
 let numberOfCars = 3;
+
+//лягушка
+const froggerSprite = new Image();
+froggerSprite.src = "image/frog_spritesheet.png";
