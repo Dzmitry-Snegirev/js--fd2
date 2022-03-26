@@ -37,6 +37,7 @@ window.addEventListener("keyup", function (EO) {
 });
 //увеличение скорости игры,счет
 function scored() {
+	frogWin.play();
 	score++;
 	gameSpeed += 0.05;
 	frogger.x = canvas.width / 2 - frogger.width / 2;

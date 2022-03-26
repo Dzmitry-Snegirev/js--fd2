@@ -52,6 +52,7 @@ class Frogger {
 
 	}
 	jump() {
+		frogJump.play();
 		if (this.moving === false) {
 			this.frameX = 1;
 		}
@@ -60,4 +61,5 @@ class Frogger {
 		}
 	}
 }
+
 const frogger = new Frogger();

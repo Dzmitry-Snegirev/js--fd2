@@ -32,11 +32,21 @@ let frame = 0;
 let gameSpeed = 1;
 let safe = false;
 
+
 const particlesArray = [];
 const maxParticles = 300;
 const ripleArray = [];
 const carsArray = [];//массив машин
 const logsArray = [];//массив бревен и черепах
+
+const audiofrog = new Audio();
+audiofrog.src = "audio/mutant_frog-2.wav";
+
+const frogJump = new Audio();
+frogJump.src = "audio/frog_Jump.wav";
+
+const frogWin = new Audio();
+frogWin.src = "audio/round_end.wav";
 
 //ОСНОВНОЙ ФОН
 const background_lvl2 = new Image();
