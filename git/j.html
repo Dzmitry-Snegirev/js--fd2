@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="j.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <ul class="list">
+        <li id="mainPage">ГЛАВНАЯ</li>
+        <li id="gamePage">ИГРАТЬ</li>
+        <li id="rulesPage">ПРАВИЛА</li>
+        <li id='scorePage'>РЕКОРДЫ</li>
+    </ul>
+
+    <div id="mainId">
+        <div class='racing'>YOUR RACING</div>
+        <img src='carMainPage1.png' class='main_Top_Car'>
+    </div>
+    <div id="ruleId">Цель игры: набрать наибольшее количество очков. Очки собираются машинкой пользователя при столкновении с монетой.
+        <hr> При столкновении с попутной машинкой, количество попыток уменьшается.
+        <hr> При наборе 10 и 20 очков скорость движения машинок увеличивается.
+    </div>
+    <div id="scoreId"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="Model.js"></script>
+    <script src="View.js"></script>
+    <script src="Controller.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -5,22 +5,38 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="frog.css">
-	<title>Frogg game</title>
+	<title>Frog game</title>
 </head>
 
 <body>
-	<div class="wrapper">
+	<div class='mainpage' id="mainId">
+		<ul class="list">
+			<li id="mainPage">ГЛАВНАЯ</li>
+			<li id="gamePage">ИГРАТЬ</li>
+			<li id="rulesPage">ПРАВИЛА</li>
+			<li id='scorePage'>РЕКОРДЫ</li>
+		</ul>
+	</div>
+	<div id="ruleId">
+		Цель игры: набрать наибольшее количество очков. Очки собираются,когда лягушка попадет на другой берег.
+		<hr> При столкновении с попутной машиной или при попадании в реку количество попыток уменьшается.
+		<hr> При наборе успешном попадании лягушки на другой берег скорость игры увеличивается.
+	</div>
+	<div id="scoreId"></div>
+	<div class="wrapper" id='frogPage'>
 		<canvas id="canvas1"></canvas>
 		<canvas id="canvas2"></canvas>
 		<canvas id="canvas3"></canvas>
 		<canvas id="canvas4"></canvas>
 		<canvas id="canvas5"></canvas>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="setup.js"></script>
 	<script src="frog.js"></script>
 	<script src="particles.js"></script>
 	<script src="obstacles.js"></script>
 	<script src="utilites.js"></script>
+	<script src="spa.js"></script>
 </body>
 
 </html>
