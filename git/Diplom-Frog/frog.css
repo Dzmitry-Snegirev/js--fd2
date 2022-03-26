@@ -64,7 +64,7 @@ body {
 
 .list li {
 	z-index: 30;
-	display: inline;
+	display: flex;
 	cursor: pointer;
 	padding: 10px;
 	letter-spacing: 10px;
