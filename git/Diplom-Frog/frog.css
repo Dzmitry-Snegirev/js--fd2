@@ -1,17 +1,73 @@
 .wrapper {
-	border: 5px solid black;
-	top: 50%;
-	left: 50%;
-	position: absolute;
-	width: 800px;
-	height: 800px;
-	transform: translate(-50%, -50%);
-	background: url(image/background\ -2.png);
+    border: 5px solid black;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    transform: translate(-50%, -50%);
+    background: url(image/background\ -2.png);
+    z-index: 100;
 }
+
 canvas {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.main_page {
+    background-size: 100% 100%;
+    background: url(image/frog-game.jpg) no-repeat center center;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    position: absolute;
+}
+
+#ruleId,
+#scoreId {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    position: absolute;
+    text-align: center;
+    z-index: 20;
+    width: 90vw;
+    margin-left: 2vw;
+    margin-top: 40vh;
+    font-size: 40px;
+    font-family: cursive;
+    font-weight: bold;
+}
+
+#scoreId>table {
+    border: red;
+    width: 80%;
+    margin: auto;
+}
+
+.list {
+    color: white;
+    font-family: cursive;
+    font-weight: bold;
+    text-align: center;
+    list-style-type: none;
+    font-size: 3.0em;
+}
+
+.list li {
+    z-index: 30;
+    display: inline;
+    cursor: pointer;
+    padding: 10px;
+    letter-spacing: 10px;
+    text-align: center;
+    text-shadow: -1px -1px red, 1px 1px orange, 2px 2px yellow, 3px 3px green, 4px 4px blue, 5px 5px darkblue, 6px 6px violet;
 }
