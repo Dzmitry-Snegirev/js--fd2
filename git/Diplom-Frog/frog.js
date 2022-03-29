@@ -60,6 +60,7 @@ class Frogger {
 			this.frameX = 0;
 		}
 	}
+
 }
 
 const frogger = new Frogger();

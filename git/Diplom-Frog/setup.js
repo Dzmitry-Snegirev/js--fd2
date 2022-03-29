@@ -27,15 +27,15 @@ canvas5.height = 800;
 const grid = 80;//ячека сетки , величина прыжка лягушки
 let keys = [];
 let score = 0;// счет игры
-let attempts = 0;
+let attempts = 3;
 let frame = 0;
-let gameSpeed = 1;
-let safe = false;
+let gameSpeed = 1;//скорость игры
+let safe = false;//положение лягушки на бревне/черепахе
 
 
 const particlesArray = [];
 const maxParticles = 300;
-const ripleArray = [];
+const ripleArray = [];//массив ряби на воде 
 const carsArray = [];//массив машин
 const logsArray = [];//массив бревен и черепах
 

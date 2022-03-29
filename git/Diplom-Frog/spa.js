@@ -15,6 +15,8 @@ var ruleDiv = document.getElementById('ruleId');
 var scoreDiv = document.getElementById('scoreId');
 var gameDiv = document.getElementById('frogPage');
 var listDiv = document.querySelector('.list');
+var inputDiv = document.querySelector('.inputName');
+
 var gameOnline = false;
 
 function switchToStateFromURLHash() {
@@ -25,7 +27,7 @@ function switchToStateFromURLHash() {
 	else
 		SPAState = { pagename: 'Main' };
 
-	var pageHTML = "";
+
 	switch (SPAState.pagename) {
 		case 'Main':
 			mainDiv.style.display = 'block';
@@ -50,7 +52,8 @@ function switchToStateFromURLHash() {
 			mainDiv.style.display = 'block';
 			ruleDiv.style.display = 'none';
 			scoreDiv.style.display = 'block';
-			gameDiv.style.display = 'none';
+			//	gameDiv.style.display = 'none';
+			restoreInfo();
 			break;
 
 	}
@@ -83,53 +86,96 @@ switchToStateFromURLHash();
 
 
 
-/*
+function myFunction() {
+	document.getElementById("panel").style.display = "block";
+}
 
 var ajaxHandlerScript = "https://fe.it-academy.by/AjaxStringStorage2.php";
-var stringName = 'ZABAVSKIY_RACING_RECORDS';
+var updatePassword;
+var stringName = 'SNEGIREV_FROG_RECORDS';
+var InfoH = [];
 
+function storeInfo() {
+	updatePassword = Math.random();
+	$.ajax(
+		{
+			url: ajaxHandlerScript, type: 'POST', cache: false, dataType: 'json',
+			data: { f: 'LOCKGET', n: stringName, p: updatePassword },
+			success: LockGetReady, error: ErrorHandler
+		}
+	);
+
+}
 function restoreInfo() {
-		$.ajax({
-				url: ajaxHandlerScript,
-				type: 'POST',
-				cache: false,
-				dataType: 'json',
-				data: { f: 'READ', n: stringName },
-				success: readReady,
-				error: errorHandler
-		});
+	$.ajax(
+		{
+			url: ajaxHandlerScript, type: 'POST', cache: false, dataType: 'json',
+			data: { f: 'READ', n: stringName },
+			success: readReady, error: ErrorHandler
+		}
+	);
 }
 
 function readReady(callresult) {
-		if (callresult.error != undefined)
-				console.log(callresult.error);
-		else if (callresult.result != "") {
-				var result = JSON.parse(callresult.result);
-				createRecordTable(scoreDiv, result);
+	var pageHTML = '';
+	if (callresult.error != undefined)
+		alert(callresult.error);
+	else if (callresult.result != "") {
+		InfoH = JSON.parse(callresult.result);
+		function compareScores(A, B) {
+			return B.score - A.score;
 		}
-}
-
-function compareScore(a, b) {
-		return b.record - a.record;
-}
-
-function createRecordTable(field, data) {
-		var pageHTML = '';
-		data.sort(compareScore);
+		InfoH.sort(compareScores);
 		pageHTML += '<table border=1> <thead> Рекорды игры </thead><tbody>';
 		pageHTML += '<td>' + '№' + '</td>' + '<td>' + 'ИМЯ' + '</td>' + '<td>' + 'СЧЕТ' + '</td>';
-		for (var i = 0; i < data.length; i++) {
-				if (i > 9) {
-						break;
-				}
-				pageHTML += '<tr>';
-				pageHTML += '<td>' + (i + 1) + '</td>' + '<td>' + data[i].name + '</td>' + '<td>' + data[i].record + '</td>';
-				pageHTML += '</tr>';
+		for (var i = 0; i < InfoH.length; i++) {
+			if (i > 9) {
+				break;
+			}
+			pageHTML += '<tr>';
+			pageHTML += '<td>' + (i + 1) + '</td>' + '<td>' + InfoH[i].name + '</td>' + '<td>' + InfoH[i].score + '</td>';
+			pageHTML += '</tr>';
 		}
 		pageHTML += '</tbody></table>';
-		field.innerHTML = pageHTML;
+		scoreDiv.innerHTML = pageHTML;
+	}
 }
 
-function errorHandler(jqXHR, statusStr, errorStr) {
-		alert(statusStr + ' ' + errorStr);
-}*/
+
+function LockGetReady(ResultH) {
+	if (ResultH.error != undefined)
+		alert(ResultH.error);
+	else {
+		// нам всё равно, что было прочитано - 
+		// всё равно перезаписываем
+		var InfoA =
+		{
+			name: document.getElementById('Player').value,
+			record: score
+		}
+		InfoH.push(InfoA)
+		$.ajax(
+			{
+				url: ajaxHandlerScript, type: 'POST', cache: false, dataType: 'json',
+				data: { f: 'UPDATE', n: stringName, v: JSON.stringify(InfoH), p: updatePassword },
+				success: UpdateReady, error: ErrorHandler
+			}
+		);
+	}
+}
+
+function UpdateReady(ResultH) {
+	if (ResultH.error != undefined)
+		alert(ResultH.error);
+}
+
+function ErrorHandler(jqXHR, StatusStr, ErrorStr) {
+	alert(StatusStr + ' ' + ErrorStr);
+}
+
+
+
+
+
+
+
