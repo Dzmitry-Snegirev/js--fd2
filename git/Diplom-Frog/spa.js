@@ -9,15 +9,16 @@ var gamePageButton = document.getElementById('gamePage');
 var rulesPageButton = document.getElementById('rulesPage');
 var scorePageButton = document.getElementById('scorePage');
 
+
+
 var mainDiv = document.getElementById('mainId');
 var playDiv = document.querySelector('.wrapper');
 var ruleDiv = document.getElementById('ruleId');
 var scoreDiv = document.getElementById('scoreId');
 var gameDiv = document.getElementById('frogPage');
 var listDiv = document.querySelector('.list');
-var inputDiv = document.querySelector('.inputName');
 
-var gameOnline = false;
+
 
 function switchToStateFromURLHash() {
 	var URLHash = window.location.hash;
@@ -41,18 +42,20 @@ function switchToStateFromURLHash() {
 			ruleDiv.style.display = 'none';
 			scoreDiv.style.display = 'none';
 			gameDiv.style.display = 'block';
+
+
 			break;
 		case 'Rules':
 			mainDiv.style.display = 'block';
 			ruleDiv.style.display = 'block';
-			scoreDiv.style.display = 'block';
+			scoreDiv.style.display = 'none';
 			gameDiv.style.display = 'none';
 			break;
 		case 'Scores':
 			mainDiv.style.display = 'block';
 			ruleDiv.style.display = 'none';
 			scoreDiv.style.display = 'block';
-			//	gameDiv.style.display = 'none';
+			gameDiv.style.display = 'none';
 			restoreInfo();
 			break;
 
@@ -82,6 +85,10 @@ scorePageButton.onclick = function (EO) {
 	switchToState({ pagename: 'Scores' });
 	EO.preventDefault();
 }
+
+
+
+
 switchToStateFromURLHash();
 
 
@@ -106,6 +113,34 @@ function storeInfo() {
 	);
 
 }
+
+function LockGetReady(ResultH) {
+	if (ResultH.error != undefined)
+		alert(ResultH.error);
+	else {
+		// нам всё равно, что было прочитано - 
+		// всё равно перезаписываем
+		var InfoA =
+		{
+			name: document.getElementById('Player').value,
+			record: score
+		}
+		InfoH.push(InfoA)
+		$.ajax(
+			{
+				url: ajaxHandlerScript, type: 'POST', cache: false, dataType: 'json',
+				data: { f: 'UPDATE', n: stringName, v: JSON.stringify(InfoH), p: updatePassword },
+				success: UpdateReady, error: ErrorHandler
+			}
+		);
+	}
+}
+
+function UpdateReady(ResultH) {
+	if (ResultH.error != undefined)
+		alert(ResultH.error);
+}
+
 function restoreInfo() {
 	$.ajax(
 		{
@@ -141,40 +176,16 @@ function readReady(callresult) {
 	}
 }
 
-
-function LockGetReady(ResultH) {
-	if (ResultH.error != undefined)
-		alert(ResultH.error);
-	else {
-		// нам всё равно, что было прочитано - 
-		// всё равно перезаписываем
-		var InfoA =
-		{
-			name: document.getElementById('Player').value,
-			record: score
-		}
-		InfoH.push(InfoA)
-		$.ajax(
-			{
-				url: ajaxHandlerScript, type: 'POST', cache: false, dataType: 'json',
-				data: { f: 'UPDATE', n: stringName, v: JSON.stringify(InfoH), p: updatePassword },
-				success: UpdateReady, error: ErrorHandler
-			}
-		);
-	}
-}
-
-function UpdateReady(ResultH) {
-	if (ResultH.error != undefined)
-		alert(ResultH.error);
-}
-
 function ErrorHandler(jqXHR, StatusStr, ErrorStr) {
 	alert(StatusStr + ' ' + ErrorStr);
 }
 
-
-
+/*
+function befUnload(EO) {
+	EO=EO||window.event;
+	if ( myModel.choiseArr.length != 0 )
+		EO.returnValue='При смене страницы данные не будут сохранены!';
+};*/
 
 
 
