@@ -17,7 +17,7 @@ var ruleDiv = document.getElementById('ruleId');
 var scoreDiv = document.getElementById('scoreId');
 var gameDiv = document.getElementById('frogPage');
 var listDiv = document.querySelector('.list');
-//var panelDiv = document.getElementById('pn');
+
 
 
 function switchToStateFromURLHash() {
@@ -153,6 +153,9 @@ function restoreInfo() {
 		}
 	);
 }
+function compareScores(A, B) {
+	return B.score - A.score;
+}
 
 function readReady(callresult) {
 	var pageHTML = '';
@@ -160,9 +163,7 @@ function readReady(callresult) {
 		alert(callresult.error);
 	else if (callresult.result != "") {
 		InfoH = JSON.parse(callresult.result);
-		function compareScores(A, B) {
-			return B.score - A.score;
-		}
+
 		InfoH.sort(compareScores);
 		pageHTML += '<table border=1> <thead> Рекорды игры </thead><tbody>';
 		pageHTML += '<td>' + '№' + '</td>' + '<td>' + 'ИМЯ' + '</td>' + '<td>' + 'СЧЕТ' + '</td>';
@@ -184,12 +185,7 @@ function ErrorHandler(jqXHR, StatusStr, ErrorStr) {
 	alert(StatusStr + ' ' + ErrorStr);
 }
 
-/*
-function befUnload(EO) {
-	EO=EO||window.event;
-	if ( myModel.choiseArr.length != 0 )
-		EO.returnValue='При смене страницы данные не будут сохранены!';
-};*/
+
 
 
 

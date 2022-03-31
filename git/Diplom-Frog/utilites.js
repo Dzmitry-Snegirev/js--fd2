@@ -69,9 +69,10 @@ function resetGame() {
 	frogger.y = canvas.height - frogger.height - 40;
 	attempts--;
 	if (attempts < 1) {
-		var endgame = confirm("Вы проиграли, если хотите продолжить нажмите 'ок'");
+		var endgame = confirm("Вы проиграли, если хотите начать зановоб нажмите 'ок'");
 		if (endgame) {
-			attempts = 3
+			attempts = 3;
+			score = 0;
 		}
 		else {
 			remeber();
