@@ -9,6 +9,15 @@
 	background: url(image/background\ -2.png);
 	z-index: 100;
 }
+#pn {
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	width: 800px;
+	height: 800px;
+	transform: translate(-50%, -50%);
+	z-index: 100;
+}
 
 canvas {
 	position: absolute;

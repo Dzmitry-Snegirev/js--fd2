@@ -67,34 +67,42 @@ function collision(first, second) {
 function resetGame() {
 	frogger.x = canvas.width / 2 - frogger.width / 2;
 	frogger.y = canvas.height - frogger.height - 40;
-
 	attempts--;
 	if (attempts < 1) {
-		score = 0;
 		var endgame = confirm("Вы проиграли, если хотите продолжить нажмите 'ок'");
 		if (endgame) {
-			attempts = 3;
+			attempts = 3
 		}
 		else {
-			var playerName = document.createElement('div');
-			playerName.style.cssText = 'position: absolute; top:0; left:0; bottom:0; right:0; background-color: rgba(0,0,0,0.8); color: white; text-align: center; font-weight: bold; font-family: cursive; font-size: 40px; z-index: 12';
-			playDiv.appendChild(playerName);
-			var inputName = document.createElement('input');
-			inputName.setAttribute('class', 'inputName');
-			inputName.setAttribute('id', 'Player');
-			inputName.setAttribute('type', 'text');
-			inputName.style.cssText = 'background-color: white; font-weight: bold; font-style: italic; color: black;';
-			playerName.innerHTML = ('КОНЕЦ ИГРЫ' + '<br>' + 'ВАШЕ ИМЯ:' + '<br>');
-			playerName.appendChild(inputName);
-			var buttonName = document.createElement('button');
-			buttonName.style.cssText = 'background-color: black; font-weight: bold; color: white;border-radius: 6px;';
-			buttonName.setAttribute('class', 'getNamePlayer');
-			buttonName.innerHTML = 'Запомнить';
-			buttonName.onclick = 'storeInfo()';
-			playerName.appendChild(buttonName);
+			remeber();
 		}
 	}
 	gameSpeed = 1;
 }
 
 
+function remeber() {
+	var playerName = document.createElement('div');
+	playerName.setAttribute('id', 'panelName');
+	playerName.style.cssText = 'position: absolute; top:0; left:0; bottom:0; right:0; background-color: rgba(0,0,0,0.8); color: white; text-align: center; font-weight: bold; font-family: cursive; font-size: 40px; z-index: 100';
+	pn.appendChild(playerName);
+	var inputName = document.createElement('input');
+	inputName.setAttribute('class', 'inputName');
+	inputName.setAttribute('id', 'Player');
+	inputName.setAttribute('type', 'text');
+	inputName.style.cssText = 'background-color: white; font-weight: bold; font-style: italic; color: black;';
+	playerName.innerHTML = ('КОНЕЦ ИГРЫ' + '<br>' + 'ВАШЕ ИМЯ:' + '<br>');
+	playerName.appendChild(inputName);
+	var buttonName = document.createElement('button');
+	buttonName.style.cssText = 'background-color: black; font-weight: bold; color: white;border-radius: 6px;';
+	buttonName.setAttribute('class', 'getNamePlayer');;
+	buttonName.innerHTML = 'Запомнить';
+	buttonName.setAttribute("onclick", "storeInfo()");
+	playerName.appendChild(buttonName);
+}
+
+function delGame() {
+	panelName.remove();
+	score = 0;
+	attempts = 3
+}

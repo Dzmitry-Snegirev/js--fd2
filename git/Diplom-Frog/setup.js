@@ -31,7 +31,7 @@ let attempts = 3;
 let frame = 0;
 let gameSpeed = 1;//скорость игры
 let safe = false;//положение лягушки на бревне/черепахе
-
+let startGame = false;
 
 const particlesArray = [];
 const maxParticles = 300;

@@ -17,7 +17,7 @@ var ruleDiv = document.getElementById('ruleId');
 var scoreDiv = document.getElementById('scoreId');
 var gameDiv = document.getElementById('frogPage');
 var listDiv = document.querySelector('.list');
-
+//var panelDiv = document.getElementById('pn');
 
 
 function switchToStateFromURLHash() {
@@ -50,6 +50,7 @@ function switchToStateFromURLHash() {
 			ruleDiv.style.display = 'block';
 			scoreDiv.style.display = 'none';
 			gameDiv.style.display = 'none';
+
 			break;
 		case 'Scores':
 			mainDiv.style.display = 'block';
@@ -61,7 +62,7 @@ function switchToStateFromURLHash() {
 
 	}
 }
-
+window.onbeforeunload = befUnload;
 function switchToState(newState) {
 	location.hash = encodeURIComponent(JSON.stringify(newState));
 }
@@ -86,16 +87,14 @@ scorePageButton.onclick = function (EO) {
 	EO.preventDefault();
 }
 
-
-
+function befUnload(EO) {
+	EO = EO || window.event;
+	if (score > 0)
+		EO.returnValue = 'При смене страницы результат игры сбросится!';
+};
 
 switchToStateFromURLHash();
 
-
-
-function myFunction() {
-	document.getElementById("panel").style.display = "block";
-}
 
 var ajaxHandlerScript = "https://fe.it-academy.by/AjaxStringStorage2.php";
 var updatePassword;
@@ -113,6 +112,8 @@ function storeInfo() {
 	);
 
 }
+
+
 
 function LockGetReady(ResultH) {
 	if (ResultH.error != undefined)
@@ -133,7 +134,9 @@ function LockGetReady(ResultH) {
 				success: UpdateReady, error: ErrorHandler
 			}
 		);
+		delGame();
 	}
+
 }
 
 function UpdateReady(ResultH) {
@@ -145,7 +148,7 @@ function restoreInfo() {
 	$.ajax(
 		{
 			url: ajaxHandlerScript, type: 'POST', cache: false, dataType: 'json',
-			data: { f: 'READ', n: stringName },
+			data: { f: 'READ', n: stringName, v: JSON.stringify(InfoH) },
 			success: readReady, error: ErrorHandler
 		}
 	);
@@ -168,13 +171,14 @@ function readReady(callresult) {
 				break;
 			}
 			pageHTML += '<tr>';
-			pageHTML += '<td>' + (i + 1) + '</td>' + '<td>' + InfoH[i].name + '</td>' + '<td>' + InfoH[i].score + '</td>';
+			pageHTML += '<td>' + (i + 1) + '</td>' + '<td>' + InfoH[i].name + '</td>' + '<td>' + InfoH[i].record + '</td>';
 			pageHTML += '</tr>';
 		}
 		pageHTML += '</tbody></table>';
 		scoreDiv.innerHTML = pageHTML;
 	}
 }
+
 
 function ErrorHandler(jqXHR, StatusStr, ErrorStr) {
 	alert(StatusStr + ' ' + ErrorStr);
