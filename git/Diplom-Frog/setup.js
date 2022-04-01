@@ -40,6 +40,7 @@ const ripleArray = [];//массив ряби на воде
 const carsArray = [];//массив машин
 const logsArray = [];//массив бревен и черепах
 
+//звуки
 const audiofrog = new Audio();
 audiofrog.src = "audio/mutant_frog-2.wav";
 
@@ -75,3 +76,12 @@ let numberOfCars = 3;
 const froggerSprite = new Image();
 froggerSprite.src = "image/frog_spritesheet.png";
 
+// добавляем вибрацию 
+function vibro(longFlag) {
+	if (navigator.vibrate) {
+		if (!longFlag)
+			window.navigator.vibrate(100);
+		else
+			window.navigator.vibrate([100, 50, 500]);
+	}
+}

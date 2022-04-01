@@ -90,6 +90,7 @@ function handleObstacles() {//отображение препятсвий
 	for (let i = 0; i < carsArray.length; i++) {
 		if (collision(frogger, carsArray[i])) {
 			ctx4.drawImage(collisions, 0, 100, 100, 100, frogger.x, frogger.y, 50, 50);
+			vibro(true);
 			resetGame();
 			audiofrog.play();
 		}
@@ -109,6 +110,7 @@ function handleObstacles() {//отображение препятсвий
 			for (let i = 0; i < 30; i++) {
 				ripleArray.unshift(new Particle(frogger.x, frogger.y));
 			}
+			vibro(true);
 			audiofrog.play();
 			resetGame();
 		}
