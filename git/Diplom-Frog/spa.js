@@ -232,46 +232,39 @@ var rightArrowTach = document.querySelector('.rightArrow');
 rightArrowTach.addEventListener('touchstart', rightArrowMove, false);
 rightArrowTach.addEventListener('touchend', ArrowMoveStop, false);
 
-var topArrowTach = document.querySelector('.toptArrow');
-rightArrowTach.addEventListener('touchstart', topArrowMove, false);
-rightArrowTach.addEventListener('touchend', ArrowMoveStop, false);
+var topArrowTach = document.querySelector('.topArrow');
+topArrowTach.addEventListener('touchstart', topArrowMove, false);
+topArrowTach.addEventListener('touchend', ArrowMoveStop, false);
 
 var botomArrowTach = document.querySelector('.bottomArrow');
-rightArrowTach.addEventListener('touchstart', bottomArrowMove, false);
-rightArrowTach.addEventListener('touchend', ArrowMoveStop, false);
-
+botomArrowTach.addEventListener('touchstart', bottomArrowMove, false);
+botomArrowTach.addEventListener('touchend', ArrowMoveStop, false);
 
 
 function leftArrowMove(EO) {
 	EO = EO || window.event;
-	keys = [];
-	keys[EO.keyCode] = true;
-	keys[37]
+	keys[37] = true;
 	frogger.jump();
+	frogger.update();
 	EO.preventDefault();
 }
+
 function rightArrowMove(EO) {
 	EO = EO || window.event;
-	keys = [];
-	keys[EO.keyCode] = true;
-	keys[39]
+	keys[39] = true;
 	frogger.jump();
 	EO.preventDefault();
 }
 
 function topArrowMove(EO) {
 	EO = EO || window.event;
-	keys = [];
-	keys[EO.keyCode] = true;
-	keys[38]
+	keys[38] = true;
 	frogger.jump();
 	EO.preventDefault();
 }
 function bottomArrowMove(EO) {
 	EO = EO || window.event;
-	keys = [];
-	keys[EO.keyCode] = true;
-	keys[40]
+	keys[40] = true;
 	frogger.jump();
 	EO.preventDefault();
 }
