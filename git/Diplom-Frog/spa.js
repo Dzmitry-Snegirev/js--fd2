@@ -216,6 +216,7 @@ var rightArrow = new makeArrow('image/arrow-right.png', 'rightArrow');
 var topArrow = new makeArrow('image/arrow-top.png', 'topArrow');
 var bottomArrow = new makeArrow('image/arrow-button.png', 'bottomArrow');
 
+
 if (document.body.offsetWidth < 768) {
 	leftArrow.arrowVisible('left');
 	rightArrow.arrowVisible('right');
@@ -223,5 +224,62 @@ if (document.body.offsetWidth < 768) {
 	bottomArrow.arrowVisible('bottom');
 }
 
+var leftArrowTach = document.querySelector('.leftArrow');
+leftArrowTach.addEventListener('touchstart', leftArrowMove, false);
+leftArrowTach.addEventListener('touchend', ArrowMoveStop, false);
+
+var rightArrowTach = document.querySelector('.rightArrow');
+rightArrowTach.addEventListener('touchstart', rightArrowMove, false);
+rightArrowTach.addEventListener('touchend', ArrowMoveStop, false);
+
+var topArrowTach = document.querySelector('.toptArrow');
+rightArrowTach.addEventListener('touchstart', topArrowMove, false);
+rightArrowTach.addEventListener('touchend', ArrowMoveStop, false);
+
+var botomArrowTach = document.querySelector('.bottomArrow');
+rightArrowTach.addEventListener('touchstart', bottomArrowMove, false);
+rightArrowTach.addEventListener('touchend', ArrowMoveStop, false);
+
+
+
+function leftArrowMove(EO) {
+	EO = EO || window.event;
+	keys = [];
+	keys[EO.keyCode] = true;
+	keys[37]
+	frogger.jump();
+	EO.preventDefault();
+}
+function rightArrowMove(EO) {
+	EO = EO || window.event;
+	keys = [];
+	keys[EO.keyCode] = true;
+	keys[39]
+	frogger.jump();
+	EO.preventDefault();
+}
+
+function topArrowMove(EO) {
+	EO = EO || window.event;
+	keys = [];
+	keys[EO.keyCode] = true;
+	keys[38]
+	frogger.jump();
+	EO.preventDefault();
+}
+function bottomArrowMove(EO) {
+	EO = EO || window.event;
+	keys = [];
+	keys[EO.keyCode] = true;
+	keys[40]
+	frogger.jump();
+	EO.preventDefault();
+}
+function ArrowMoveStop(EO) {
+	EO = EO || window.event;
+	delete keys[EO.keyCode];
+	frogger.moving = false;
+	frogger.frameX = 0;
+}
 
 

@@ -36,66 +36,10 @@ window.addEventListener("keyup", function (EO) {
 
 
 
+
 //обработчики тачем 
-var leftArrow = document.querySelector('.leftArrow');
-leftArrow.addEventListener('touchstart', leftArrowMove, false);
-leftArrow.addEventListener('touchend', ArrowMoveStop, false);
 
 
-var rightArrow = document.querySelector('.rightArrow');
-rightArrow.addEventListener('touchstart', rightArrowMove, false);
-rightArrow.addEventListener('touchend', ArrowMoveStop, false);
-
-var topArrow = document.querySelector('.toptArrow');
-rightArrow.addEventListener('touchstart', topArrowMove, false);
-rightArrow.addEventListener('touchend', ArrowMoveStop, false);
-
-var botomArrow = document.querySelector('.bottomArrow');
-rightArrow.addEventListener('touchstart', bottomArrowMove, false);
-rightArrow.addEventListener('touchend', ArrowMoveStop, false);
-
-function leftArrowMove(EO) {
-	EO = EO || window.event;
-	EO.preventDefault();
-	keys = [];
-	keys[EO.targetTouches] = true;
-	if (leftArrow) {
-		frogger.jump();
-	}
-}
-function rightArrowMove(EO) {
-	EO = EO || window.event;
-	EO.preventDefault();
-	keys = [];
-	if (rightArrow) {
-		frogger.jump();
-	}
-}
-
-function topArrowMove(EO) {
-	EO = EO || window.event;
-	EO.preventDefault();
-	keys = [];
-	keys[EO.targetTouches] = true;
-	if (topArrow) {
-		frogger.jump();
-	}
-}
-function bottomArrowMove(EO) {
-	EO = EO || window.event;
-	EO.preventDefault();
-	keys = [];
-	keys[EO.targetTouches] = true;
-	if (botttomArrow) {
-		frogger.jump();
-	}
-}
-function ArrowMoveStop(EO) {
-	EO = EO || window.event;
-	delete keys[EO.targetTouches];
-	frogger.moving = false;
-	frogger.frameX = 0;
-}
 
 //увеличение скорости игры,счет
 function scored() {
