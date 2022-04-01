@@ -109,11 +109,11 @@ body {
 }
 @media only all and (max-width: 520px) {
 	.wrapper,#pn{
-		width: 360px;
-		height: 360px;
+		width: 350px;
+		height: 350px;
 		top:48%;
 	}
-	
+
 	.list{
 		font-size: 1.6em;
 	}
