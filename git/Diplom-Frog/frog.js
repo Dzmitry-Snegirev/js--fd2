@@ -19,6 +19,8 @@ class Frogger {
 				this.frameY = 0;
 			}
 		}
+
+
 		if (keys[40]) {// прыжок вниз
 			if (this.moving === false && this.y < canvas.height - this.height * 2) {
 				this.y += grid;
@@ -34,6 +36,13 @@ class Frogger {
 				this.frameY = 2;
 			}
 		}
+		leftArrow.addEventListener('touchstart', function () {
+			if (this.moving === false && this.x > this.width) {
+				this.x -= grid;
+				this.moving = true;
+				this.frameY = 2;
+			}
+		}, false);
 		if (keys[39]) {// прыжок вправо
 			if (this.moving === false && this.x < canvas.width - this.width * 2) {
 				this.x += grid;
@@ -64,3 +73,18 @@ class Frogger {
 }
 
 const frogger = new Frogger();
+
+
+
+
+var leftArrow = document.querySelector('.leftArrow');
+leftArrow.addEventListener('touchend', stopPlayer, false);
+var rightArrow = document.querySelector('.rightArrow');
+rightArrow.addEventListener('touchstart', arrowRightMove, false);
+rightArrow.addEventListener('touchend', stopPlayer, false);
+var topArrow = document.querySelector('.toptArrow');
+rightArrow.addEventListener('touchstart', arrowRightMove, false);
+rightArrow.addEventListener('touchend', stopPlayer, false);
+var botomArrow = document.querySelector('.bottomArrowArrow');
+rightArrow.addEventListener('touchstart', arrowRightMove, false);
+rightArrow.addEventListener('touchend', stopPlayer, false);

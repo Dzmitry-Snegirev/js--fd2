@@ -33,6 +33,7 @@ let gameSpeed = 1;//скорость игры
 let safe = false;//положение лягушки на бревне/черепахе
 let startGame = false;
 
+
 const particlesArray = [];
 const maxParticles = 300;
 const ripleArray = [];//массив ряби на воде 
@@ -73,3 +74,4 @@ let numberOfCars = 3;
 //лягушка
 const froggerSprite = new Image();
 froggerSprite.src = "image/frog_spritesheet.png";
+
