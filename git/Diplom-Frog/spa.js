@@ -243,6 +243,7 @@ botomArrowTach.addEventListener('touchend', ArrowMoveStop, false);
 
 function leftArrowMove(EO) {
 	EO = EO || window.event;
+	keys = [];
 	keys[37] = true;
 	frogger.jump();
 	frogger.update();
@@ -251,6 +252,7 @@ function leftArrowMove(EO) {
 
 function rightArrowMove(EO) {
 	EO = EO || window.event;
+	keys = [];
 	keys[39] = true;
 	frogger.jump();
 	EO.preventDefault();
@@ -258,19 +260,24 @@ function rightArrowMove(EO) {
 
 function topArrowMove(EO) {
 	EO = EO || window.event;
+	keys = [];
 	keys[38] = true;
 	frogger.jump();
 	EO.preventDefault();
 }
 function bottomArrowMove(EO) {
 	EO = EO || window.event;
+	keys = [];
 	keys[40] = true;
 	frogger.jump();
 	EO.preventDefault();
 }
 function ArrowMoveStop(EO) {
 	EO = EO || window.event;
-	delete keys[EO.keyCode];
+	delete keys[37];
+	delete keys[38];
+	delete keys[39];
+	delete keys[40];
 	frogger.moving = false;
 	frogger.frameX = 0;
 }
