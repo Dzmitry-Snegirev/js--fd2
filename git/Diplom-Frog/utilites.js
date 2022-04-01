@@ -35,12 +35,6 @@ window.addEventListener("keyup", function (EO) {
 });
 
 
-
-
-//обработчики тачем 
-
-
-
 //увеличение скорости игры,счет
 function scored() {
 	frogWin.play();
@@ -68,8 +62,6 @@ function collision(first, second) {
 		first.y + first.height < second.y);
 };
 
-
-
 function resetGame() {
 	frogger.x = canvas.width / 2 - frogger.width / 2;
 	frogger.y = canvas.height - frogger.height - 40;
@@ -87,7 +79,7 @@ function resetGame() {
 	gameSpeed = 1;
 }
 
-
+//сохранение имя пользователя
 function remeber() {
 	var playerName = document.createElement('div');
 	playerName.setAttribute('id', 'panelName');
