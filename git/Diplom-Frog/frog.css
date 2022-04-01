@@ -103,6 +103,9 @@ body {
 	letter-spacing:normal;
 	padding: 6px;
 }
+#ruleId{
+	margin-top: 10vh;
+}
 }
 @media only all and (max-width: 520px) {
 	.wrapper,#pn{
@@ -114,5 +117,8 @@ body {
 	}
 	.list li{
 		padding: 10px;
+	}
+	#ruleId{
+	font-size: 34px;
 	}
 }

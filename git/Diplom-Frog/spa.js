@@ -18,7 +18,8 @@ var scoreDiv = document.getElementById('scoreId');
 var gameDiv = document.getElementById('frogPage');
 var listDiv = document.querySelector('.list');
 
-
+let playWidth = playDiv.offsetWidth;// ширина игрового поля
+let playHeight = playDiv.offsetHeight;// высота игрового поля
 
 function switchToStateFromURLHash() {
 	var URLHash = window.location.hash;
@@ -185,8 +186,42 @@ function ErrorHandler(jqXHR, StatusStr, ErrorStr) {
 	alert(StatusStr + ' ' + ErrorStr);
 }
 
+//создание стрелок для управления тачем
+function makeArrow(image, classArrow) {
+	var arrow = document.createElement('img');
+	arrow.setAttribute('src', image);
+	arrow.setAttribute('width', playWidth / 5);
+	arrow.setAttribute('height', playHeight / 7);
+	arrow.setAttribute('class', classArrow);
+	arrow.style.cssText = 'position: absolute; visibility: hidden';
+	mainDiv.appendChild(arrow);
+	this.arrowVisible = function (arrowPos) {
+		if (arrowPos === "bottom") {
+			arrow.style.cssText = 'position: absolute; left:40%; ' + arrowPos + ': 2%; z-index: 10; visibility: visible';
+		}
+		if (arrowPos === "left") {
+			arrow.style.cssText = 'position: absolute; bottom: 10%; ' + arrowPos + ': 20%; z-index: 10; visibility: visible';
+		}
+		if (arrowPos === "top") {
+			arrow.style.cssText = 'position: absolute; left:40%; ' + arrowPos + ': 75%; z-index: 10; visibility: visible';
+		}
+		if (arrowPos === "right") {
+			arrow.style.cssText = 'position: absolute; bottom: 10%; ' + arrowPos + ': 20%; z-index: 10; visibility: visible';
+		}
+	}
+}
 
+var leftArrow = new makeArrow('image/arrow-left.png', 'leftArrow');
+var rightArrow = new makeArrow('image/arrow-right.png', 'rightArrow');
+var topArrow = new makeArrow('image/arrow-top.png', 'topArrow');
+var bottomArrow = new makeArrow('image/arrow-button.png', 'bottomArrow');
 
+if (document.body.offsetWidth < 768) {
+	leftArrow.arrowVisible('left');
+	rightArrow.arrowVisible('right');
+	topArrow.arrowVisible('top');
+	bottomArrow.arrowVisible('bottom');
+}
 
 
 

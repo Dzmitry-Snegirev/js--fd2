@@ -11,7 +11,7 @@ class Frogger {
 		this.frameY = 0;
 	}
 	update() {
-		if (keys[38]) {// прыжок вверх
+		if (keys[38] || topArrow) {// прыжок вверх
 			if (this.moving === false) {
 				this.y -= grid;
 				this.moving = true;
@@ -21,7 +21,7 @@ class Frogger {
 		}
 
 
-		if (keys[40]) {// прыжок вниз
+		if (keys[40] || botomArrow) {// прыжок вниз
 			if (this.moving === false && this.y < canvas.height - this.height * 2) {
 				this.y += grid;
 				this.moving = true;
@@ -29,21 +29,15 @@ class Frogger {
 
 			}
 		}
-		if (keys[37]) {// прыжок влево 
+		if (keys[37] || leftArrow) {// прыжок влево 
 			if (this.moving === false && this.x > this.width) {
 				this.x -= grid;
 				this.moving = true;
 				this.frameY = 2;
 			}
 		}
-		leftArrow.addEventListener('touchstart', function () {
-			if (this.moving === false && this.x > this.width) {
-				this.x -= grid;
-				this.moving = true;
-				this.frameY = 2;
-			}
-		}, false);
-		if (keys[39]) {// прыжок вправо
+
+		if (keys[39] || rightArrow) {// прыжок вправо
 			if (this.moving === false && this.x < canvas.width - this.width * 2) {
 				this.x += grid;
 				this.moving = true;
@@ -76,15 +70,3 @@ const frogger = new Frogger();
 
 
 
-
-var leftArrow = document.querySelector('.leftArrow');
-leftArrow.addEventListener('touchend', stopPlayer, false);
-var rightArrow = document.querySelector('.rightArrow');
-rightArrow.addEventListener('touchstart', arrowRightMove, false);
-rightArrow.addEventListener('touchend', stopPlayer, false);
-var topArrow = document.querySelector('.toptArrow');
-rightArrow.addEventListener('touchstart', arrowRightMove, false);
-rightArrow.addEventListener('touchend', stopPlayer, false);
-var botomArrow = document.querySelector('.bottomArrowArrow');
-rightArrow.addEventListener('touchstart', arrowRightMove, false);
-rightArrow.addEventListener('touchend', stopPlayer, false);
