@@ -203,7 +203,7 @@ function makeArrow(image, classArrow) {
 			arrow.style.cssText = 'position: absolute; bottom: 10%; ' + arrowPos + ': 20%; z-index: 10; visibility: visible';
 		}
 		if (arrowPos === "top") {
-			arrow.style.cssText = 'position: absolute; left:40%; ' + arrowPos + ': 75%; z-index: 10; visibility: visible';
+			arrow.style.cssText = 'position: absolute; left:40%; ' + arrowPos + ': 76%; z-index: 10; visibility: visible';
 		}
 		if (arrowPos === "right") {
 			arrow.style.cssText = 'position: absolute; bottom: 10%; ' + arrowPos + ': 20%; z-index: 10; visibility: visible';
@@ -223,7 +223,7 @@ if (document.body.offsetWidth < 768) {
 	topArrow.arrowVisible('top');
 	bottomArrow.arrowVisible('bottom');
 }
-
+//обработчики  тач
 var leftArrowTach = document.querySelector('.leftArrow');
 leftArrowTach.addEventListener('touchstart', leftArrowMove, false);
 leftArrowTach.addEventListener('touchend', ArrowMoveStop, false);

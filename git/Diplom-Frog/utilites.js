@@ -100,6 +100,7 @@ function remeber() {
 	playerName.appendChild(buttonName);
 }
 
+//новая игра
 function delGame() {
 	panelName.remove();
 	score = 0;

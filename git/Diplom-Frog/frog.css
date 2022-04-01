@@ -111,7 +111,9 @@ body {
 	.wrapper,#pn{
 		width: 360px;
 		height: 360px;
+		top:48%;
 	}
+	
 	.list{
 		font-size: 1.6em;
 	}
