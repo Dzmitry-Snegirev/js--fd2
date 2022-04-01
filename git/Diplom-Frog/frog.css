@@ -109,7 +109,7 @@ body {
 }
 @media only all and (max-width: 520px) {
 	.wrapper,#pn{
-		width: 350px;
+		width: 340px;
 		height: 350px;
 		top:48%;
 	}
